@@ -22,6 +22,10 @@ elseif(COMPILER_CACHE STREQUAL "chcache")
     find_package(Rust REQUIRED)
 
     include ("${ClickHouse_SOURCE_DIR}/contrib/corrosion/cmake/Corrosion.cmake")
+
+    set(RUST_VENDOR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/contrib/rust_vendor")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/utils/chcache/.cargo/config.toml.in" "${CMAKE_CURRENT_SOURCE_DIR}/utils/chcache/.cargo/config.toml" @ONLY)
+
     corrosion_import_crate(
         MANIFEST_PATH ${CMAKE_CURRENT_SOURCE_DIR}/utils/chcache/Cargo.toml
         PROFILE release
