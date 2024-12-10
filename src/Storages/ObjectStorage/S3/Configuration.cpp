@@ -205,19 +205,14 @@ void StorageS3Configuration::fromAST(ASTs & args, ContextPtr context, bool with_
     /// When adding new arguments in the signature don't forget to update addStructureAndFormatToArgsIfNeeded as well.
 
     /// For 2 arguments we support:
-    /// if with_structure == 0:
     /// - s3(source, format)
     /// - s3(source, NOSIGN)
-    /// if with_structure == 1:
-    /// - s3(source, structure)
     /// We can distinguish them by looking at the 2-nd argument: check if it's NOSIGN or not.
     if (count == 2)
     {
         auto second_arg = checkAndGetLiteralArgument<String>(args[1], "format/NOSIGN");
         if (boost::iequals(second_arg, "NOSIGN"))
             no_sign_request = true;
-        else if (with_structure)
-            engine_args_to_idx = {{"structure", 1}};
         else
             engine_args_to_idx = {{"format", 1}};
     }
