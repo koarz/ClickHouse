@@ -1,13 +1,11 @@
 <clickhouse>
     <remote_servers>
-        <cluster_non_existent_port>
+        <cluster_non_existent_port> <!-- fixme -->
             <shard>
                 <replica>
                     <host>node1</host>
                     <port>9000</port>
                 </replica>
-            </shard>
-            <shard>
                 <replica>
                     <host>node1</host>
                     <port>19000</port>
